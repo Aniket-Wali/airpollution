@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>air pollution</title>
+</head>
+<body>
+        <h1> Hello Welcome to Air pollution project!</h1>
+        <h2> Here are your access Records:</h2>
+
+        <div class="djangotwo">
+            {% if access_records %}
+                <table>
+                    <thead>
+                        <th> States</th>
+                        <th> City</th>
+                    </thead>
+                    {% for acc in access_records %}
+                    <tr>
+                        <td>{{ acc.State }}</td>
+                        <td>{{ acc.City }}</td>
+                        <td>{{ acc.Category_of_ES }}</td>
+                        <td>{{ acc.Type }}</td>
+                        <td>{{ acc.Air_quality_of_NO2 }}</td>
+                        <td>{{ acc.NO2_Annual_average }}</td>
+                        <td>{{ acc.Air_quality_of_SO2 }}</td>
+                        <td>{{ acc.SO2_Annual_average }}</td>
+                        <td>{{ acc.Air_quality_of_PM10 }}</td>
+                        <td>{{ acc.PM10_Annual_average }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>NO ACCESS RECORDS FOUND!</p>
+            {% endif %}
+        </div>
+
+</body>
+</html>
