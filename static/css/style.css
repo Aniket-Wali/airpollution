@@ -28,7 +28,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 body.dev {
-  background: #ccc;
+  background: #BBDEFB;
   min-height: 10000px;
 }
 

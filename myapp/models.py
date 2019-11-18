@@ -16,6 +16,9 @@ class air_quality_cities(models.Model):
     PM10_Annual_average = models.IntegerField()
     Air_quality_of_PM10 = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.City
+
 
 class air_quality_index(models.Model):
     Quality = models.CharField(max_length=20)
@@ -29,3 +32,6 @@ class air_quality_index(models.Model):
     O3_high = models.IntegerField()
     CO_low = models.IntegerField()
     CO_high = models.IntegerField()
+
+    def __str__(self):
+        return self.Quality

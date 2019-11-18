@@ -29,20 +29,20 @@
 
 <!-- Header 1 -->
 
-<header class="pt-195 pb-110 bg-light header_1">
+<header class="pt-195 pb-110 bg-gray ">
 
 <!-- Header Menu 1 -->
 
 	<nav class="header_menu_1 pt-30 pb-30 mt-30">
 		<div class="container px-xl-0">
 			<div class="row justify-content-center align-items-center f-18 medium">
-				<div class="col-lg-3 logo left" data-aos-duration="600"
+				<div class="col-lg-3 logo right" data-aos-duration="600"
                      data-aos="fade-down" data-aos-delay="1200"> Air Pollution Statistical management</div>
 
-				<div class="col-lg-6 text-center" data-aos-duration="600" data-aos="fade-down" data-aos-delay="900">
-					<a href="#" class="{% url 'home' %}">Home</a>
-					<a href="#" class="link color-heading mx-15">Monitoring System</a>
-					<a href="#" class="link color-heading mx-15">Search</a>
+				<div class="col-lg-6 text-right" data-aos-duration="600" data-aos="fade-down" data-aos-delay="900">
+					<a href="{% url 'home' %}" class="link color-heading mx-15">Home</a>
+					<a href="{% url 'Search' %}" class="link color-heading mx-15">Search</a>
+					<a href="#" class="link color-heading mx-15">About</a>
 				</div>
                 <!--
 				<div class="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-end align-items-center" data-aos-duration="600" data-aos="fade-down" data-aos-delay="1200">
@@ -57,13 +57,19 @@
 	<div class="container">
 		<h1 class="big text-center" data-aos-duration="600" data-aos="fade-down" data-aos-delay="0">Air Quality Index</h1>
 		<div class=" mt-50 color-heading" data-aos-duration="600" data-aos="fade-down" data-aos-delay="300">
-			<b>1)</b> Air Quality Index is a tool for effective communication of air quality status to people in terms, which are easy to understand.
-            It transforms complex air quality data of various pollutants into a single number (index value),
-            nomenclature and colour.		</div>
-        <div class=" mt-20 color-heading" data-aos-duration="600" data-aos="fade-down" data-aos-delay="300">
-			<b>2)</b> There are six AQI categories, namely Good + Satisfactory, Moderately polluted, Poor, Very  Poor,  and  Severe.
-            Each  of  these  categories  is  decided  based  on  ambient concentration values of air pollutants and their likely
-            health impacts (known as health breakpoints). 		</div>
+			<ol class="mt-10">
+                <li>Air Quality Index is a tool for effective communication of air quality status to people in terms, which are easy to understand.
+                It transforms complex air quality data of various pollutants into a single number (index value),
+                nomenclature and colour.</li>
+                <li class="mt-20">There are six AQI categories, namely Good + Satisfactory, Moderately polluted, Poor, Very  Poor,  and  Severe.
+                Each  of  these  categories  is  decided  based  on  ambient concentration values of air pollutants and their likely
+                health impacts (known as health breakpoints). </li>
+            </ol>
+
+        </div>
+
+
+
 
         <div class="mt-30  " data-aos-duration="600" data-aos="fade-down" data-aos-delay="300">
             {% if access_records %}
