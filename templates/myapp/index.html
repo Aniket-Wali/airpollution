@@ -22,6 +22,15 @@
 					<link href="{% static 'css/style.css' %}" rel="stylesheet" />
 				<!-- jQuery 3.3.1 -->
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+
 			</head>
 	<body>
 <!-- Navigation Mobile type 1 -->
@@ -36,39 +45,45 @@
 	<nav class="header_menu_1 pt-30 pb-30 mt-30">
 		<div class="container px-xl-0">
 			<div class="row justify-content-center align-items-center f-18 medium">
-				<div class="col-lg-3 logo right" data-aos-duration="600"
-                     data-aos="fade-down" data-aos-delay="1200"> Air Pollution Statistical management</div>
+				<div class="col-lg-3 logo right" data-aos-duration=""
+                     data-aos="" data-aos-delay=""> Air Pollution Statistical management</div>
 
-				<div class="col-lg-6 text-right" data-aos-duration="600" data-aos="fade-down" data-aos-delay="900">
+				<div class="col-lg-6 text-right" data-aos-duration="" data-aos="" data-aos-delay="900">
 					<a href="{% url 'home' %}" class="link color-heading mx-15">Home</a>
 					<a href="{% url 'Search' %}" class="link color-heading mx-15">Search</a>
 					<a href="#" class="link color-heading mx-15">About</a>
 				</div>
-                <!--
-				<div class="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-end align-items-center" data-aos-duration="600" data-aos="fade-down" data-aos-delay="1200">
-					<a href="#" class="mr-20 link color-heading">Sign In</a>
-					<a href="#" class="btn sm action-1">Sign Up</a>
-				</div>
-				-->
 			</div>
 		</div>
 	</nav>
 
-	<div class="container">
-
-        <div class="mt-30  " data-aos-duration="600" data-aos="fade-down" data-aos-delay="300">
-            <form action="" method="post">{% csrf_token %}
-                <input name="q" type="text" placeholder="Search...">
-                <input type="submit">
-            </form>
-        </div>
 
 
 
-
-
-
-	</div>
+    <div class="container">
+    <br/>
+	<div class="row justify-content-center">
+                        <div class="col-12 col-md-10 col-lg-8">
+                            <form class="card card-sm" action="{% url 'result' %}">
+                                <div class="card-body row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <i class="fas fa-search h4 text-body"></i>
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col">
+                                        <input name="q" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search City or State">
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col-auto">
+                                        <button  class="btn btn-lg btn-success" type="submit">Search</button>
+                                    </div>
+                                    <!--end of col-->
+                                </div>
+                            </form>
+                        </div>
+                        <!--end of col-->
+                    </div>
+</div>
 
 
 </header>
@@ -80,13 +95,11 @@
 <!-- Fancybox 3 jQuery plugin JS (Open images and video in popup) -->
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 <!-- Google maps JS API -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDP6Ex5S03nvKZJZSvGXsEAi3X_tFkua4U"></script>
 <!-- Slick 1.8.1 jQuery plugin JS (Sliders) -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <!-- AOS 2.3.4 jQuery plugin JS (Animations) -->
+
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<!-- Startup 3 JS (Custom js for all blocks) -->
-<script src="{% static 'js/script.js' %}"></script>
 
 </body>
 </html>

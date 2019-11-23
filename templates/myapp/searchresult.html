@@ -44,12 +44,6 @@
 					<a href="{% url 'Search' %}" class="link color-heading mx-15">Search</a>
 					<a href="#" class="link color-heading mx-15">About</a>
 				</div>
-                <!--
-				<div class="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-end align-items-center" data-aos-duration="600" data-aos="fade-down" data-aos-delay="1200">
-					<a href="#" class="mr-20 link color-heading">Sign In</a>
-					<a href="#" class="btn sm action-1">Sign Up</a>
-				</div>
-				-->
 			</div>
 		</div>
 	</nav>
@@ -93,17 +87,50 @@
                         <td>{{ acc.Air_quality_of_PM10 }}</td>
 
                     </tr>
-
-
-
                   </tbody>
                   {% endfor %}
                 </table>
-            {% else %}
+
+
+        </div>
+                {% for acc in object_list%}
+        <div id="container">
+            <script src="https://code.highcharts.com/highcharts.src.js"></script>
+          <script>
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Air Quality of components'
+                },
+                xAxis: {
+                    categories: ['SO2 Annual average', 'NO2 Annual average', 'PM10 Annual average']
+                },
+                series: [{
+                    name: '',
+                    colorByPoint: true,
+                    data: [{
+                            name: 'PM10 Annual average',
+                            y: {{ acc.PM10_Annual_average }},
+                            sliced: true,
+                            selected: true
+                        },{
+                            name: 'SO2 Annual average',
+                            y: {{ acc.SO2_Annual_average }}
+                        }, {
+                            name: 'NO2 Annual average',
+                            y: {{ acc.NO2_Annual_average }}
+                        }]
+                }, ]
+            });
+          </script>
+        </div>
+                {% endfor %}
+        {% else %}
                 <p>NO ACCESS RECORDS FOUND!</p>
             {% endif %}
 
-        </div>
 
 	</div>
 

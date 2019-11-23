@@ -1,6 +1,10 @@
-from django.db.models import Q
+import json
+
+from django.db.models import Q, Count
 from django.shortcuts import render
 from django.views.generic import ListView, TemplateView
+from django.http import JsonResponse, HttpResponse
+from django.core import serializers
 
 from myapp.models import air_quality_cities, air_quality_index
 
@@ -28,5 +32,25 @@ class SearchResult(ListView):
         return object_list
 
 
+def search(request):
+    template_name = 'myapp/searchresult.html'
+
+    query = request.GET.get('q', '')
+    if query:
+        # query example
+        object_list = air_quality_cities.objects.filter(Q(City__icontains=query) | Q(State__icontains=query))
+    else:
+        object_list = []
+    return render(
+        request, template_name, {'object_list': object_list})
+
+
 class SearchPage(TemplateView):
     template_name = 'myapp/index.html'
+
+
+class chart(TemplateView):
+    template_name = 'myapp/chart.html'
+
+
+
