@@ -42,7 +42,7 @@
 				<div class="col-lg-6 text-right" data-aos-duration="600" data-aos="fade-down" data-aos-delay="900">
 					<a href="{% url 'home' %}" class="link color-heading mx-15">Home</a>
 					<a href="{% url 'Search' %}" class="link color-heading mx-15">Search</a>
-					<a href="#" class="link color-heading mx-15">About</a>
+					<a href="{% url 'about' %}" class="link color-heading mx-15">About</a>
 				</div>
 			</div>
 		</div>
@@ -52,20 +52,18 @@
 
         <div class="mt-30  " data-aos-duration="600" data-aos="fade-down" data-aos-delay="300">
             {% if object_list %}
-                            <table class="table table-responsive small">
+                            <table class="table table-responsive ">
                   <thead class="thead-dark">
                    <tr>
-                       <th scope="col">Srno</th>
+
                       <th scope="col">State</th>
                       <th scope="col">City</th>
-                      <th scope="col">Type</th>
-                      <th scope="col">Category_of_ES</th>
-                        <th scope="col">SO2_Annual_average</th>
-                        <th scope="col">Air_quality_of_SO2</th>
-                        <th scope="col">NO2_Annual_average</th>
-                        <th scope="col">Air_quality_of_NO2</th>
-                        <th scope="col">PM10_Annual_average</th>
-                        <th scope="col">Air_quality_of_PM10</th>
+                        <th scope="col">SO2 Annual AVG</th>
+                        <th scope="col">Air quality of SO2</th>
+                        <th scope="col">NO2 Annual AVGe</th>
+                        <th scope="col">Air quality of NO2</th>
+                        <th scope="col">PM10 Annual AVG</th>
+                        <th scope="col">Air quality of PM10</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -74,17 +72,14 @@
                   {% for acc in object_list%}
 
                     <tr>
-                      <th scope="row">{{ acc.id }}</th>
-                      <td><b>{{ acc.State }}</b></td>
+                      <th scope="row">{{ acc.State }}</th>
                         <td>{{ acc.City }}</td>
-                        <td>{{ acc.Type }}</td>
-                        <td>{{ acc.Category_of_ES }}</td>
                         <td>{{ acc.SO2_Annual_average }}</td>
-                        <td>{{ acc.Air_quality_of_SO2 }}</td>
+                        <td><b>{{ acc.Air_quality_of_SO2 }}</b></td>
                         <td>{{ acc.NO2_Annual_average }}</td>
-                        <td>{{ acc.Air_quality_of_NO2 }}</td>
+                        <td><b>{{ acc.Air_quality_of_NO2 }}</b></td>
                         <td>{{ acc.PM10_Annual_average }}</td>
-                        <td>{{ acc.Air_quality_of_PM10 }}</td>
+                        <td><b>{{ acc.Air_quality_of_PM10 }}</b></td>
 
                     </tr>
                   </tbody>
@@ -92,9 +87,10 @@
                 </table>
 
 
-        </div>
+            </div>
+                {% if object_list.count == 1 %}
                 {% for acc in object_list%}
-        <div id="container">
+            <div id="container">
             <script src="https://code.highcharts.com/highcharts.src.js"></script>
           <script>
             Highcharts.chart('container', {
@@ -127,6 +123,102 @@
           </script>
         </div>
                 {% endfor %}
+                    {% endif %}
+                {% if object_list.count > 1 %}
+                        <div id="container">
+                                <script src="https://code.highcharts.com/highcharts.src.js"></script>
+                      <script>
+                                    Highcharts.chart('container', {
+                            chart: {
+                                type: 'column',
+                                zoomType: 'xy'
+                            },
+
+                            title: {
+                                text: 'Air Quality Index city wise'
+                            },
+                            subtitle: {
+                                text: 'Annual AVG'
+                            },
+                            xAxis: {
+                                title: {
+                                    enabled: true,
+                                    text: 'City'
+                                },
+                                categories: [
+                                    {% for entry in object_list %}'{{ entry.City }} '{% if not forloop.last %}, {% endif %}{% endfor %}
+                                  ],
+                                startOnTick: true,
+                                endOnTick: true,
+                                showLastLabel: true
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'AQI Level'
+                                }
+                            },
+                            legend: {
+                                layout: 'vertical',
+                                align: 'left',
+                                verticalAlign: 'top',
+                                x: 10,
+                                y: 50,
+                                floating: true,
+                                backgroundColor: Highcharts.defaultOptions.chart.backgroundColor,
+                                borderWidth: 1
+                            },
+                            plotOptions: {
+                                scatter: {
+                                    marker: {
+                                        radius: 5,
+                                        states: {
+                                            hover: {
+                                                enabled: true,
+                                                lineColor: 'rgb(100,100,100)'
+                                            }
+                                        }
+                                    },
+                                    states: {
+                                        hover: {
+                                            marker: {
+                                                enabled: false
+                                            }
+                                        }
+                                    },
+                                    tooltip: {
+                                        headerFormat: '<b>{series.name}</b><br>',
+                                        pointFormat: '{point.y} '
+                                    }
+                                }
+                            },
+                            series: [{
+                                name: 'SO2',
+                                color: 'rgba(223, 83, 83, .5)',
+
+                                data: [ {% for entry in object_list %}{{ entry.SO2_Annual_average}}{% if not forloop.last %}, {% endif %}{% endfor %}]
+
+                            },
+                                {
+                                name: 'NO2',
+                                color: 'rgba(119, 152, 191, .5)',
+
+                                data: [ {% for entry in object_list %}{{ entry.NO2_Annual_average}}{% if not forloop.last %}, {% endif %}{% endfor %}]
+
+                            },
+                                {
+                                name: 'PM10',
+                                color: 'rgba(108, 83, 83, .5)',
+
+                                data: [ {% for entry in object_list %}{{ entry.PM10_Annual_average}}{% if not forloop.last %}, {% endif %}{% endfor %}]
+
+                            },
+                            ]
+                        });
+                      </script>
+
+                        </div>
+                    {% endif %}
+
         {% else %}
                 <p>NO ACCESS RECORDS FOUND!</p>
             {% endif %}

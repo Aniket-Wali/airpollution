@@ -42,7 +42,7 @@
 				<div class="col-lg-6 text-right" data-aos-duration="600" data-aos="fade-down" data-aos-delay="900">
 					<a href="{% url 'home' %}" class="link color-heading mx-15">Home</a>
 					<a href="{% url 'Search' %}" class="link color-heading mx-15">Search</a>
-					<a href="#" class="link color-heading mx-15">About</a>
+					<a href="{% url 'about' %}" class="link color-heading mx-15">About</a>
 				</div>
                 <!--
 				<div class="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-end align-items-center" data-aos-duration="600" data-aos="fade-down" data-aos-delay="1200">
@@ -53,11 +53,29 @@
 			</div>
 		</div>
 	</nav>
+<div  id='map'  style='height:700px;' >
+    <span class="border-top border-dark"></span>
+<link  rel="stylesheet"  href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css"  />
+<script  src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
 
+<script>
+      var  OSM_URL  =  'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+      var  OSM_ATTRIB  =  '&copy;  <a  href="http://openstreetmap.org/copyright">OpenStreetMap</a>  contributors';
+      var  osmLayer  =  L.tileLayer(OSM_URL,  {attribution:  OSM_ATTRIB});
+
+      var  WAQI_URL    =  "https://tiles.waqi.info/tiles/asean-pm10/{z}/{x}/{y}.png?token=72a90b92bac9607c021156f37ddc61a1d1938b5c";
+      var  WAQI_ATTR  =  'Air  Quality  Tiles  &copy;  <a  href="http://waqi.info">waqi.info</a>';
+      var  waqiLayer  =  L.tileLayer(WAQI_URL,  {attribution:  WAQI_ATTR});
+
+      var  map  =  L.map('map').setView([20.5937,  78.9629], 5);
+      map.addLayer(osmLayer).addLayer(waqiLayer);
+</script>
+</div>
 	<div class="container">
-		<h1 class="big text-center" data-aos-duration="600" data-aos="fade-down" data-aos-delay="0">Air Quality Index</h1>
+		<h1 class="big text-center mt-25" data-aos-duration="600" data-aos="fade-down" data-aos-delay="0">Air Quality Index</h1>
 		<div class=" mt-50 color-heading" data-aos-duration="600" data-aos="fade-down" data-aos-delay="300">
-			<ol class="mt-10">
+
+			<ol class="mt-10" >
                 <li>Air Quality Index is a tool for effective communication of air quality status to people in terms, which are easy to understand.
                 It transforms complex air quality data of various pollutants into a single number (index value),
                 nomenclature and colour.</li>
@@ -71,9 +89,9 @@
 
 
 
-        <div class="mt-30  " data-aos-duration="600" data-aos="fade-down" data-aos-delay="300">
+        <div class="mt-30 text-center " data-aos-duration="600" data-aos="fade-down" data-aos-delay="300" >
             {% if access_records %}
-                            <table class="table table-responsive small">
+                            <table class="table table-responsive text-center" style="width: fit-content">
                   <thead class="thead-dark">
                     <tr>
                       <th scope="col">Srno</th>
@@ -118,6 +136,96 @@
             {% endif %}
 
         </div>
+
+    <div class="mt-30 text-center " data-aos-duration="600" data-aos="fade-down" data-aos-delay="300" style="width: 100%">
+        <div id="container" style="width: auto">
+
+            <script src="https://code.highcharts.com/highcharts.src.js"></script>
+          <script>
+                        Highcharts.chart('container', {
+                chart: {
+                    type: 'column',
+                    zoomType: 'xy'
+                },
+
+                title: {
+                    text: 'Air Quality Index city wise'
+                },
+                subtitle: {
+                    text: 'Annual AVG'
+                },
+                xAxis: {
+                    title: {
+                        enabled: true,
+                        text: 'City'
+                    },
+                    categories: [
+                        {% for entry in aqi_list %}'{{ entry.City_id }} '{% if not forloop.last %}, {% endif %}{% endfor %}
+                      ],
+                    startOnTick: true,
+                    endOnTick: true,
+                    showLastLabel: true
+                },
+                yAxis: {
+                    title: {
+                        text: 'AQI Level'
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'left',
+                    verticalAlign: 'top',
+                    x: 10,
+                    y: 50,
+                    floating: true,
+                    backgroundColor: Highcharts.defaultOptions.chart.backgroundColor,
+                    borderWidth: 1
+                },
+                plotOptions: {
+                    scatter: {
+                        marker: {
+                            radius: 5,
+                            states: {
+                                hover: {
+                                    enabled: true,
+                                    lineColor: 'rgb(100,100,100)'
+                                }
+                            }
+                        },
+                        states: {
+                            hover: {
+                                marker: {
+                                    enabled: false
+                                }
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<b>{series.name}</b><br>',
+                            pointFormat: '{point.y} '
+                        }
+                    }
+                },
+                series: [{
+                    name: 'AQI',
+                    color: 'rgba(223, 83, 83, .5)',
+
+                    data: [ {% for entry in aqi_list %}{{ entry.Index}}{% if not forloop.last %}, {% endif %}{% endfor %}]
+
+                }, ]
+            });
+          </script>
+        </div>
+
+
+
+
+        </div>
+
+
+
+
+
+
 
 	</div>
 

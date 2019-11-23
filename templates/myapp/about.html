@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+	<head>
+		<meta charset="utf-8" >
+		<title>Air Pollution</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Google Fonts -->
+				<link href="https://fonts.googleapis.com/css?family=DM+Sans:100,200,300,400,600,500,700,800,900|DM+Sans:100,200,300,400,500,600,700,800,900&amp;subset=latin" rel="stylesheet">
+				<!-- Bootstrap 4.3.1 CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<!-- Slick 1.8.1 jQuery plugin CSS (Sliders) -->
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+		<!-- Fancybox 3 jQuery plugin CSS (Open images and video in popup) -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+		<!-- AOS 2.3.4 jQuery plugin CSS (Animations) -->
+		<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+		<!-- FontAwesome CSS -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+		<!-- Startup 3 CSS (Styles for all blocks) -->
+					<link href="{% static 'css/style.css' %}" rel="stylesheet" />
+				<!-- jQuery 3.3.1 -->
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+			</head>
+	<body>
+<!-- Navigation Mobile type 1 -->
+
+
+<!-- Header 1 -->
+
+<header class="pt-195 pb-110 bg-gray ">
+
+<!-- Header Menu 1 -->
+
+	<nav class="header_menu_1 pt-30 pb-30 mt-30">
+		<div class="container px-xl-0">
+			<div class="row justify-content-center align-items-center f-18 medium">
+				<div class="col-lg-3 logo right" data-aos-duration="600"
+                     data-aos="fade-down" data-aos-delay="1200"> Air Pollution Statistical management</div>
+
+				<div class="col-lg-6 text-right" data-aos-duration="600" data-aos="fade-down" data-aos-delay="900">
+					<a href="{% url 'home' %}" class="link color-heading mx-15">Home</a>
+					<a href="{% url 'Search' %}" class="link color-heading mx-15">Search</a>
+					<a href="{% url 'about' %}" class="link color-heading mx-15">About</a>
+				</div>
+
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<h1 class="big text-center" data-aos-duration="600" data-aos="fade-down" data-aos-delay="0">A NATIONAL AIR QUALITY SERVICE PROVIDER</h1>
+		<div class=" mt-50 color-heading" data-aos-duration="600" data-aos="fade-down" data-aos-delay="300">
+            <h5 class="big text-center" data-aos-duration="600" data-aos="fade-down" data-aos-delay="0">Information and data are prerequisites for an effective Air Quality Management .
+                This means having information on :</h5>
+			<ul class="mt-10">
+                <li>what is the level of pollution (monitoring trends)</li>
+                <li class="mt-20">which areas are the most polluted (spatial trends) </li>
+                <li class="mt-20">who is contributing to this pollution (source trends) </li>
+                <li class="mt-20">when do pollution levels peak (temporal trends)  </li>
+                <li class="mt-20">what are the options we have to reduce pollution (control trends). </li>
+            </ul>
+
+        </div>
+
+        <p class="mt-20" style="align-content: center" data-aos-duration="600" data-aos="fade-down" data-aos-delay="300" >The “Air Pollution Statistical Management” is designed to provide a starting point for understanding air pollution in cities in India.
+            It brings together information from disparate sources to present a clear picture of the state of air pollution in that city.</p>
+
+        <p class="mt-20" style="align-content: center" data-aos-duration="600" data-aos="fade-down" data-aos-delay="300">This involves creating a detailed information database that includes pulling together data from disparate sources, surveys, mapping and atmospheric modeling. Deciding on policy
+            options based on this information and implementing them effectively is the next step.</p>
+
+        <p class="mt-20" style="align-content: center" data-aos-duration="600" data-aos="fade-down" data-aos-delay="300">The analysis presents data extracted from a global database. The data is available at 0.1° and 0.01° resolution. We utilize the later to build these tables and charts,
+            and also aggregated to state and city levels. </p>
+
+        <p class="mt-20" style="align-content: center" data-aos-duration="600" data-aos="fade-down" data-aos-delay="300"><b>Air pollution</b> is a serious environmental health issue in India. The global burden of disease assessments estimated 0.74 million and 1.1 million premature
+        deaths in 1990 and 2016 due to outdoor PM2.5 and ozone pollution and 0.99 million and 0.78 million premature deaths in 1990 and 2016 due to household (indoor)
+            PM2.5 pollution (GBD, 2018) .</p>
+
+        <h3 class="big mt-45" data-aos-duration="600" data-aos="fade-down" data-aos-delay="0">
+            SOURCES OF AIR POLLUTION:</h3>
+
+        <div class="text-center mt-25" data-aos-duration="600" data-aos="fade-down" data-aos-delay="300">
+            <img src="{% static 'images/sources.jpg' %}" class="mt-25" style="align-content: center">
+        </div>
+
+        <ul class="mt-20" data-aos-duration="600" data-aos="fade-down" data-aos-delay="300">
+                <li>Dust and Construction 		45%</li>
+                <li class="mt-20">Waste Burning			17% </li>
+                <li class="mt-20">Transport				14% </li>
+                <li class="mt-20">Diesel Generator			9% </li>
+                <li class="mt-20">Industries				8% </li>
+                <li class="mt-20">Domestic Cooking  		7% </li>
+            </ul>
+
+        <h3 class="big mt-45" data-aos-duration="600" data-aos="fade-down" data-aos-delay="0">
+            EFFECTS OF AIR POLLUTION:</h3>
+
+        <div class="text-center mt-25" data-aos-duration="600" data-aos="fade-down" data-aos-delay="300">
+            <img src="{% static 'images/abc.jpg' %}" class="mt-25" style="align-content: center">
+        </div>
+
+        <p class="mt-20" style="align-content: center" data-aos-duration="600" data-aos="fade-down" data-aos-delay="300">
+            The <b>Air Pollution Statistical Management</b> seeks to address precisely this shortfall and give policy makers a baseline to work with.
+            We feel that to take the air pollution policy debate further at the national scale, we need to move beyond anecdotal evidence,
+            quantify and spatially map out pollution, and assess the impact of sources .
+        </p>
+
+        </div>
+
+
+
+
+</header>
+<!-- forms alerts -->
+
+
+<!-- Bootstrap 4.3.1 JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<!-- Fancybox 3 jQuery plugin JS (Open images and video in popup) -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<!-- Google maps JS API -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDP6Ex5S03nvKZJZSvGXsEAi3X_tFkua4U"></script>
+<!-- Slick 1.8.1 jQuery plugin JS (Sliders) -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!-- AOS 2.3.4 jQuery plugin JS (Animations) -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<!-- Startup 3 JS (Custom js for all blocks) -->
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>

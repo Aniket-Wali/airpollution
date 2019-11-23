@@ -6,9 +6,7 @@ from django.contrib.auth.models import User
 
 class air_quality_cities(models.Model):
     State = models.CharField(max_length=100)
-    City = models.CharField(max_length=100)
-    Type = models.CharField(max_length=200)
-    Category_of_ES = models.CharField(max_length=200)
+    City = models.CharField(max_length=100, primary_key= True)
     SO2_Annual_average = models.IntegerField()
     Air_quality_of_SO2 = models.CharField(max_length=100)
     NO2_Annual_average = models.IntegerField()
@@ -19,6 +17,10 @@ class air_quality_cities(models.Model):
     def __str__(self):
         return self.City
 
+
+class AQI(models.Model):
+    City = models.ForeignKey(air_quality_cities, on_delete=models.CASCADE)
+    Index = models.IntegerField()
 
 class air_quality_index(models.Model):
     Quality = models.CharField(max_length=20)
